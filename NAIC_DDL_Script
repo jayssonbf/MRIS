@@ -64,6 +64,7 @@ CREATE TABLE policyholder (
   premium_payment VARCHAR(50) NOT NULL,
 
   PRIMARY KEY (policy_holder_id)
+  
 );
 
 
