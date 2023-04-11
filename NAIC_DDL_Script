@@ -1,0 +1,70 @@
+CREATE TABLE bill (
+  bill_id SERIAL,
+  policy_id INTEGER NOT NULL,
+  billing_date DATE,
+  due_date DATE,
+  amount_due DOUBLE PRECISION NOT NULL,
+  status VARCHAR(15) NOT NULL,
+	
+  PRIMARY KEY (bill_id),
+  FOREIGN KEY (policy_id)
+	REFERENCES policy (policy_id)
+);
+
+CREATE TABLE beneficiary (
+   beneficiary_id SERIAL,
+   policy_id INTEGER NOT NULL,
+   first_name VARCHAR(50) NOT NULL,
+   last_name VARCHAR(50) NOT NULL,
+   date_of_birth DATE NOT NULL,
+   gender VARCHAR(1) NOT NULL CHECK (gender IN ('M', 'F')),
+   ssn VARCHAR(11),
+   relationship VARCHAR(20) NOT NULL,
+   email VARCHAR(50) NOT NULL,
+	
+  PRIMARY KEY (beneficiary_id),
+  FOREIGN KEY (policy_id)
+	REFERENCES policy (policy_id)
+);
+
+CREATE TABLE claim (
+   claim_id SERIAL,
+   policy_id INTEGER NOT NULL,
+   claim_date DATE NOT NULL,
+   claim_amount DOUBLE PRECISION NOT NULL,
+   claim_status VARCHAR(10) NOT NULL,
+	
+  PRIMARY KEY (claim_id),
+  FOREIGN KEY (policy_id)
+	REFERENCES policy (policy_id)
+);
+
+CREATE TABLE policy (
+   policy_id SERIAL,
+   policy_holder_id INTEGER NOT NULL,
+   policy_effective_date DATE NOT NULL,
+   policy_expire_date DATE NOT NULL,
+   face_amount DOUBLE PRECISION NOT NULL,
+   active BOOLEAN NOT NULL,
+	
+  PRIMARY KEY (policy_id),
+  FOREIGN KEY (policy_holder_id)
+      REFERENCES policyholder (policy_holder_id)
+);
+
+CREATE TABLE policyholder (
+  policy_holder_id SERIAL,
+  first_name VARCHAR(50) NOT NULL,
+  middle_initial VARCHAR(1),
+  last_name VARCHAR(50) NOT NULL,
+  date_of_birth DATE NOT NULL,
+  gender VARCHAR(1) NOT NULL CHECK (gender IN ('M', 'F')),
+  ssn VARCHAR(11),
+  email VARCHAR(50) NOT NULL,
+  premium_payment VARCHAR(50) NOT NULL,
+
+  PRIMARY KEY (policy_holder_id)
+);
+
+
+
