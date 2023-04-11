@@ -1,0 +1,16 @@
+USE [CMS]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[cms_db](
+	[recipient_id] [varchar](50) NULL,
+	[first_name] [varchar](50) NULL,
+	[last_name] [varchar](50) NULL,
+	[date_of_birth] [varchar](50) NULL,
+	[ssn] [varchar](50) NULL,
+	[state] [varchar](50) NULL,
+	[veteran] [varchar](50) NULL
+) ON [PRIMARY]
+GO
