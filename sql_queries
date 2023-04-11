@@ -1,0 +1,12 @@
+SQL QUERIES
+-----------
+
+//Select all policy holders who owns a policy
+SELECT * FROM policyholder,policy WHERE policyholder.policy_holder_id = policy.policy_holder_id;
+SELECT * FROM policyholder as T1, policy as T2 WHERE T1.policy_holder_id = T2.policy_holder_id;
+
+//Create a view table containing all insureds 
+CREATE VIEW insured as
+ 	SELECT T1.*,face_amount FROM policyholder as T1 
+ 	INNER JOIN policy as T2 
+	ON T1.policy_holder_id = T2.policy_holder_id;
